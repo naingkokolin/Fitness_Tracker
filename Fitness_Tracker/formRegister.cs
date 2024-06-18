@@ -46,12 +46,15 @@ namespace Fitness_Tracker
                     if (Char.IsLower(password)) lowercaseCount++;
 
                     if (Char.IsUpper(password)) uppercaseCount++;
-
-                    if (lowercaseCount == 0 || uppercaseCount == 0)
-                    {
-                        MessageBox.Show("Password should contain at least one upper case or lower case!");
-                        return;
-                    }
+                }
+                if (lowercaseCount == 0 || uppercaseCount == 0)
+                {
+                    MessageBox.Show("Password should contain at least one upper case or lower case!");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Account created successfully.");
                 }
             }
             else
