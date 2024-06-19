@@ -55,6 +55,9 @@ namespace Fitness_Tracker
                 else
                 {
                     MessageBox.Show("Account created successfully.");
+                    formRecordActivity recordActivityForm = new formRecordActivity();
+                    recordActivityForm.Show();
+                    this.Hide();
                 }
             }
             else
