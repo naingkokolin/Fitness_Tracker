@@ -133,6 +133,7 @@
             btnCalculateCalory.TabIndex = 12;
             btnCalculateCalory.Text = "Calculate Calory";
             btnCalculateCalory.UseVisualStyleBackColor = true;
+            btnCalculateCalory.Click += btnCalculateCalory_Click;
             // 
             // comboBoxActivities
             // 
@@ -147,7 +148,7 @@
             // 
             AutoScaleDimensions = new SizeF(6F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 464);
             Controls.Add(comboBoxActivities);
             Controls.Add(btnCalculateCalory);
             Controls.Add(btnChooseActiviy);

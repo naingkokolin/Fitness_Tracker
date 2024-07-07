@@ -29,7 +29,9 @@ namespace Fitness_Tracker
             String loginName = tbLoginName.Text;
             String loginPassword = tbLoginPassword.Text;
 
-
+            formRecordActivity recordActivityForm = new formRecordActivity();
+            recordActivityForm.Show();
+            this.Hide();
         }
     }
 }

@@ -8,50 +8,47 @@ namespace Fitness_Tracker
 {
     public class Activity
     {
-        public string Name { get; }
-        public string Metric1 { get; }
-        public string Metric2 { get; }
-        public string Metric3 { get; }
-        public double CaloryBurned { get; set; }
+        public string Name;
+        public string Metric1;
+        public string Metric2;
+        public string Metric3;
+        public double CaloryBurned;
 
-        public Activity(string name, string metric1, string metric2, string metric3)
+        public Activity()
         {
-            Name = name;
-            Metric1 = metric1;
-            Metric2 = metric2;
-            Metric3 = metric3;
+        
         }
 
-        public double CalculateCaloryBurned(Activity activity)
+        public double CalculateCaloryBurned(String activityName, double metric1, double metric2, double metric3)
         {
-            if (activity == null)
+            if (activityName == null)
             {
                 return 0.0;
             }
 
-            if (activity.Name == "Walking")
+            if (activityName.Equals("Walking"))
             {
-                CaloryBurned = Int32.Parse(activity.Metric1) * Int32.Parse(activity.Metric2) * 0.57;
+                CaloryBurned = metric1 * metric2 * 0.57;
             } 
-            else if (activity.Name == "Swimming")
+            else if (activityName == "Swimming")
             {
-                CaloryBurned = Int32.Parse(activity.Metric1) * (3.5 * 7 * Int32.Parse(activity.Metric2)) / 200;
+                CaloryBurned = metric1 * (3.5 * 7 * metric2) / 200;
             }
-            else if (activity.Name == "Running")
+            else if (activityName == "Running")
             {
-                CaloryBurned = Int32.Parse(activity.Metric1) * Int32.Parse(activity.Metric2) * 1.036;
+                CaloryBurned = metric1 * metric2 * 1.036;
             }
-            else if (activity.Name == "Cycling")
+            else if (activityName == "Cycling")
             {
-                CaloryBurned = Int32.Parse(activity.Metric1) * (3.5 * 6 * Int32.Parse(activity.Metric2)) / 200;
+                CaloryBurned = metric1 * (3.5 * 6 * metric2);
             }
-            else if (activity.Name == "Yoga")
+            else if (activityName == "Yoga")
             {
-                CaloryBurned = Int32.Parse(activity.Metric1) * (3 * Int32.Parse(activity.Metric2)) / 200;
+                CaloryBurned = (metric1 * 3 * metric2) / 200;
             }
             else
             {
-                CaloryBurned = Int32.Parse(activity.Metric1) * (3.5 * 6 * Int32.Parse(activity.Metric2)) / 200;
+                CaloryBurned = metric1 * (3.5 * 6 * metric2);
             }
 
             return CaloryBurned;

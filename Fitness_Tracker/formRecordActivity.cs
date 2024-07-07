@@ -12,9 +12,12 @@ namespace Fitness_Tracker
 {
     public partial class formRecordActivity : Form
     {
+        String selectedActivity;
+        Activity activity;
         public formRecordActivity()
         {
             InitializeComponent();
+            activity = new Activity();
             comboBoxActivities.SelectedIndex = 0;
             lbMetric1.Text = "Steps";
             lbMetric2.Text = "Distance";
@@ -23,11 +26,11 @@ namespace Fitness_Tracker
 
         private void btnChooseActiviy_Click(object sender, EventArgs e)
         {
-            string selectedActivity = comboBoxActivities.SelectedItem.ToString();
+            selectedActivity = comboBoxActivities.SelectedItem.ToString();
             if (selectedActivity == null)
             {
                 selectedActivity = comboBoxActivities.Items[0].ToString();
-            } 
+            }
             else
             {
                 if (selectedActivity == "Walking")
@@ -50,7 +53,7 @@ namespace Fitness_Tracker
                     lbMetric2.Text = "Time Taken";
                     lbMetric3.Text = "Average Pace";
                     MessageBox.Show("You chose running");
-                } 
+                }
                 else if (selectedActivity == "Cycling")
                 {
                     lbMetric1.Text = "Distance";
@@ -64,13 +67,34 @@ namespace Fitness_Tracker
                     lbMetric2.Text = "Difficulty Level";
                     lbMetric3.Text = "Heart Rate";
                     MessageBox.Show("You chose yoga");
-                } else
+                }
+                else
                 {
                     lbMetric1.Text = "Number of Exercises";
                     lbMetric2.Text = "Repetition";
                     lbMetric3.Text = "Weight Lifted";
                     MessageBox.Show("You chose strength training");
                 }
+            }
+        }
+
+        private void btnCalculateCalory_Click(object sender, EventArgs e)
+        {
+            var caloryWantToBurn = Double.Parse(tbCaloryBurn.Text);
+
+            selectedActivity = comboBoxActivities.SelectedItem.ToString();
+            double metric1 = Double.Parse(tbMetric1.Text);
+            double metric2 = Double.Parse(tbMetric2.Text);
+            double metric3 = Double.Parse(tbMetric3.Text);
+            double caloryBurned = activity.CalculateCaloryBurned(selectedActivity, metric1, metric2, metric3);
+            MessageBox.Show(caloryBurned + " calories are burned");
+
+            if (caloryBurned >= caloryWantToBurn)
+            {
+                MessageBox.Show("Congratulations! You have achieved your goal");
+            } else
+            {
+                MessageBox.Show("You need to do some activity a little bit!");
             }
         }
     }
