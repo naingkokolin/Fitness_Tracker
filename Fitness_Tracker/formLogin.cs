@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace Fitness_Tracker
 {
     public partial class formLogin : Form
     {
+        User user = new User();
         public formLogin()
         {
             InitializeComponent();
@@ -26,12 +28,16 @@ namespace Fitness_Tracker
 
         private void btnLoginLogin_Click(object sender, EventArgs e)
         {
+            bool isValidAccount = false;
             String loginName = tbLoginName.Text;
             String loginPassword = tbLoginPassword.Text;
-
-            formRecordActivity recordActivityForm = new formRecordActivity();
-            recordActivityForm.Show();
-            this.Hide();
+            isValidAccount = user.checkUsernamePassword(loginName, loginPassword);
+            if (isValidAccount)
+            {
+                formRecordActivity recordActivityForm = new formRecordActivity();
+                recordActivityForm.Show();
+                this.Hide();
+            }
         }
     }
 }

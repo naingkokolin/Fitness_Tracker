@@ -120,5 +120,55 @@ namespace Fitness_Tracker
 
             return isValid;
         }
+
+        public bool checkUsernamePassword(string username, string password)
+        {
+            bool isValid = false;
+            string connectionString = "server=localhost;database=fitness_tracker;uid=root;";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+
+            try
+            {
+                connection.Open();
+                string getQuery = "SELECT username, password FROM account WHERE username = @username";
+                MySqlCommand cmd = new MySqlCommand(getQuery, connection);
+                cmd.Parameters.AddWithValue("@username", username);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    string dbUsername = reader["username"].ToString();
+                    string dbPassword = reader["password"].ToString();
+
+                    if (username != null && password != null)
+                    {
+                        if (username != dbUsername || password != dbPassword)
+                        {
+                            MessageBox.Show("Username or password is incorrect!");
+                            return isValid;
+                        }
+                        else
+                        {
+                            isValid = true;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("User not found.");
+                    return isValid;
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isValid;
+        }
     }
 }
