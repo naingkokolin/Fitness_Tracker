@@ -34,13 +34,16 @@ namespace Fitness_Tracker
             isValidAccount = user.checkUsernamePassword(loginName, loginPassword);
             if (isValidAccount)
             {
-                User.logiAttemptCount = 0;
+                User.logiAttemptCount = 5;
                 formRecordActivity recordActivityForm = new formRecordActivity();
                 recordActivityForm.Show();
                 this.Hide();
             }
             else
             {
+                // check the wrong login attempts and count
+                // if the wrong login attemps count is 3, show warning the user with label
+                // if the count is 5, close the form
                 User.logiAttemptCount--;
                 if (User.logiAttemptCount <= 0)
                 {
@@ -49,8 +52,8 @@ namespace Fitness_Tracker
                 }
                 else if (User.logiAttemptCount <= 3)
                 {
-                    lbLoginAttemptCount.Text = "Remaining Login Attempts: " + User.logiAttemptCount;
-                    lbLoginAttemptCount.Visible = true;
+                    lblLoginAttemptCount.Text = "Remaining Login Attempts: " + User.logiAttemptCount;
+                    lblLoginAttemptCount.Visible = true;
                 }
             }
         }

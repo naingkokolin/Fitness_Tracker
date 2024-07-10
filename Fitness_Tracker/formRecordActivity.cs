@@ -12,12 +12,13 @@ namespace Fitness_Tracker
 {
     public partial class formRecordActivity : Form
     {
-        String selectedActivity;
+        String selectedActivity = string.Empty;
         Activity activity;
         public formRecordActivity()
         {
             InitializeComponent();
             activity = new Activity();
+            lblUser.Text = User.user;
             comboBoxActivities.SelectedIndex = 0;
             lbMetric1.Text = "Steps";
             lbMetric2.Text = "Distance";
@@ -38,44 +39,40 @@ namespace Fitness_Tracker
                     lbMetric1.Text = "Steps";
                     lbMetric2.Text = "Distance";
                     lbMetric3.Text = "Time Taken";
-                    MessageBox.Show("You chose walking");
                 }
                 else if (selectedActivity == "Swimming")
                 {
                     lbMetric1.Text = "Number of Laps";
                     lbMetric2.Text = "Time Taken";
                     lbMetric3.Text = "Average Heart Rate";
-                    MessageBox.Show("You chose swimming");
                 }
                 else if (selectedActivity == "Running")
                 {
                     lbMetric1.Text = "Distance";
-                    lbMetric2.Text = "Time Taken";
+                    lbMetric2.Text = "Weight";
                     lbMetric3.Text = "Average Pace";
-                    MessageBox.Show("You chose running");
                 }
                 else if (selectedActivity == "Cycling")
                 {
-                    lbMetric1.Text = "Distance";
-                    lbMetric2.Text = "Time Taken";
+                    lbMetric1.Text = "Time";
+                    lbMetric2.Text = "Weight";
                     lbMetric3.Text = "Average Speed";
-                    MessageBox.Show("You chose Cycling");
                 }
                 else if (selectedActivity == "Yoga")
                 {
                     lbMetric1.Text = "Duration";
-                    lbMetric2.Text = "Difficulty Level";
+                    lbMetric2.Text = "Weight";
                     lbMetric3.Text = "Heart Rate";
-                    MessageBox.Show("You chose yoga");
                 }
                 else
                 {
                     lbMetric1.Text = "Number of Exercises";
-                    lbMetric2.Text = "Repetition";
+                    lbMetric2.Text = "Time";
                     lbMetric3.Text = "Weight Lifted";
-                    MessageBox.Show("You chose strength training");
                 }
             }
+            lblSelectedActivity.Visible = true;
+            lblSelectedActivity.Text = selectedActivity;
         }
 
         private void btnCalculateCalory_Click(object sender, EventArgs e)
@@ -92,10 +89,17 @@ namespace Fitness_Tracker
             if (caloryBurned >= caloryWantToBurn)
             {
                 MessageBox.Show("Congratulations! You have achieved your goal");
-            } else
+            }
+            else
             {
                 MessageBox.Show("You need to do some activity a little bit!");
             }
+        }
+
+        private void btnSetTarget_Click(object sender, EventArgs e)
+        {
+            lblTargetCalory.Visible = true;
+            lblTargetCalory.Text = tbCaloryBurn.Text;
         }
     }
 }

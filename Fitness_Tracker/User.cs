@@ -6,10 +6,11 @@ namespace Fitness_Tracker
 {
     public class User
     {
-        private string username;
-        private string password;
+        private string username = string.Empty;
+        private string password = string.Empty;
         private string connectionString = "server=localhost;database=fitness_tracker;uid=root";
         public static int logiAttemptCount = 5;
+        public static string user = string.Empty;
 
         public string Username
         {
@@ -23,7 +24,7 @@ namespace Fitness_Tracker
             set { password = value; }
         }
 
-        // Check the username and add to the database
+        // Check the username to accept the registration
         public bool ValidateUsername(string username)
         {
             bool isValid = false;
@@ -40,25 +41,6 @@ namespace Fitness_Tracker
                     }   
                 }
                 isValid = true;
-
-                //try
-                //{
-                //    using (MySqlConnection mySqlConnection = new MySqlConnection(connectionString))
-                //    {
-                //        mySqlConnection.Open();
-                //        string insertQuery = "INSERT INTO account (username) VALUES (@username)";
-                //        using (MySqlCommand cmd = new MySqlCommand(insertQuery, mySqlConnection))
-                //        {
-                //            cmd.Parameters.AddWithValue("@username", username);
-                //            cmd.ExecuteNonQuery();
-                //            isValid = true;
-                //        }
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show(ex.Message);
-                //}
             }
             else
             {
@@ -68,7 +50,7 @@ namespace Fitness_Tracker
             return isValid;
         }
 
-        // Validate the password and add to the database
+        // Validate the password to accept the registration
         public bool ValidatePassword(string password)
         {
             bool isValid = false;
@@ -94,24 +76,6 @@ namespace Fitness_Tracker
                 {
                     isValid = true;
                     MessageBox.Show("Account created successfully.");
-
-                    //try
-                    //{
-                    //    using (MySqlConnection mySqlConnection = new MySqlConnection(connectionString))
-                    //    {
-                    //        mySqlConnection.Open();
-                    //        string insertQuery = "INSERT INTO account (password) VALUES (@password)";
-                    //        using (MySqlCommand cmd = new MySqlCommand(insertQuery, mySqlConnection))
-                    //        {
-                    //            cmd.Parameters.AddWithValue("@password", password);
-                    //            cmd.ExecuteNonQuery();
-                    //        }
-                    //    }
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    MessageBox.Show(ex.Message);
-                    //}
                 }
             }
             else
@@ -138,8 +102,8 @@ namespace Fitness_Tracker
 
                 if (reader.Read())
                 {
-                    string dbUsername = reader["username"].ToString();
-                    string dbPassword = reader["password"].ToString();
+                    string dbUsername = reader["username"].ToString() as string ?? string.Empty;
+                    string dbPassword = reader["password"].ToString() as string ?? string.Empty;
 
                     if (username != null && password != null)
                     {
@@ -151,6 +115,7 @@ namespace Fitness_Tracker
                         else
                         {
                             isValid = true;
+                            user = username;
                         }
                     }
                 }
@@ -161,9 +126,13 @@ namespace Fitness_Tracker
                 }
                 reader.Close();
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("MySQL error: " + ex.Message);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("General Error: " + ex.Message);
             }
             finally
             {

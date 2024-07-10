@@ -36,7 +36,7 @@
             lblLoginRegister = new Label();
             tbLoginName = new TextBox();
             tbLoginPassword = new TextBox();
-            lbLoginAttemptCount = new Label();
+            lblLoginAttemptCount = new Label();
             SuspendLayout();
             // 
             // btnLoginLogin
@@ -112,20 +112,20 @@
             // 
             // lbLoginAttemptCount
             // 
-            lbLoginAttemptCount.AutoSize = true;
-            lbLoginAttemptCount.Location = new Point(184, 328);
-            lbLoginAttemptCount.Name = "lbLoginAttemptCount";
-            lbLoginAttemptCount.Size = new Size(87, 18);
-            lbLoginAttemptCount.TabIndex = 8;
-            lbLoginAttemptCount.Text = "Login Attempts: ";
-            lbLoginAttemptCount.Visible = false;
+            lblLoginAttemptCount.AutoSize = true;
+            lblLoginAttemptCount.Location = new Point(184, 328);
+            lblLoginAttemptCount.Name = "lbLoginAttemptCount";
+            lblLoginAttemptCount.Size = new Size(87, 18);
+            lblLoginAttemptCount.TabIndex = 8;
+            lblLoginAttemptCount.Text = "Login Attempts: ";
+            lblLoginAttemptCount.Visible = false;
             // 
             // formLogin
             // 
             AutoScaleDimensions = new SizeF(6F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(lbLoginAttemptCount);
+            Controls.Add(lblLoginAttemptCount);
             Controls.Add(tbLoginPassword);
             Controls.Add(tbLoginName);
             Controls.Add(lblLoginRegister);
@@ -150,6 +150,6 @@
         private Label lblLoginRegister;
         private TextBox tbLoginName;
         private TextBox tbLoginPassword;
-        private Label lbLoginAttemptCount;
+        private Label lblLoginAttemptCount;
     }
 }
