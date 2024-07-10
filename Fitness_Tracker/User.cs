@@ -9,6 +9,7 @@ namespace Fitness_Tracker
         private string username;
         private string password;
         private string connectionString = "server=localhost;database=fitness_tracker;uid=root";
+        public static int logiAttemptCount = 5;
 
         public string Username
         {

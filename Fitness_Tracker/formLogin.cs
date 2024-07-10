@@ -22,8 +22,8 @@ namespace Fitness_Tracker
         private void lblLoginRegister_Click(object sender, EventArgs e)
         {
             formRegistration formRegistration = new formRegistration();
+            formRegistration.Show();
             this.Hide();
-            formRegistration.ShowDialog();
         }
 
         private void btnLoginLogin_Click(object sender, EventArgs e)
@@ -34,9 +34,24 @@ namespace Fitness_Tracker
             isValidAccount = user.checkUsernamePassword(loginName, loginPassword);
             if (isValidAccount)
             {
+                User.logiAttemptCount = 0;
                 formRecordActivity recordActivityForm = new formRecordActivity();
                 recordActivityForm.Show();
                 this.Hide();
+            }
+            else
+            {
+                User.logiAttemptCount--;
+                if (User.logiAttemptCount <= 0)
+                {
+                    MessageBox.Show("You have reached the limit of login attempts. Please try again later or register another account.");
+                    this.Close();
+                }
+                else if (User.logiAttemptCount <= 3)
+                {
+                    lbLoginAttemptCount.Text = "Remaining Login Attempts: " + User.logiAttemptCount;
+                    lbLoginAttemptCount.Visible = true;
+                }
             }
         }
     }

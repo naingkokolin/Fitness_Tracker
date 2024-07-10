@@ -36,13 +36,15 @@
             tbRegisterName = new TextBox();
             tbRegisterPassword = new TextBox();
             lblRegisterLogin = new Label();
+            textBox1 = new TextBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // lblRegisterName
             // 
             lblRegisterName.AutoSize = true;
             lblRegisterName.Font = new Font("Arial Narrow", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblRegisterName.Location = new Point(109, 74);
+            lblRegisterName.Location = new Point(80, 74);
             lblRegisterName.Name = "lblRegisterName";
             lblRegisterName.Size = new Size(32, 15);
             lblRegisterName.TabIndex = 0;
@@ -52,7 +54,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arial Narrow", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(109, 139);
+            label2.Location = new Point(80, 121);
             label2.Name = "label2";
             label2.Size = new Size(49, 15);
             label2.TabIndex = 1;
@@ -60,7 +62,7 @@
             // 
             // btnRegisterRegister
             // 
-            btnRegisterRegister.Location = new Point(225, 208);
+            btnRegisterRegister.Location = new Point(206, 311);
             btnRegisterRegister.Name = "btnRegisterRegister";
             btnRegisterRegister.Size = new Size(75, 23);
             btnRegisterRegister.TabIndex = 2;
@@ -70,7 +72,7 @@
             // 
             // btnRegisterClear
             // 
-            btnRegisterClear.Location = new Point(363, 208);
+            btnRegisterClear.Location = new Point(312, 311);
             btnRegisterClear.Name = "btnRegisterClear";
             btnRegisterClear.Size = new Size(75, 23);
             btnRegisterClear.TabIndex = 3;
@@ -81,7 +83,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(225, 256);
+            label3.Location = new Point(206, 357);
             label3.Name = "label3";
             label3.Size = new Size(133, 18);
             label3.TabIndex = 4;
@@ -89,14 +91,14 @@
             // 
             // tbRegisterName
             // 
-            tbRegisterName.Location = new Point(225, 71);
+            tbRegisterName.Location = new Point(206, 70);
             tbRegisterName.Name = "tbRegisterName";
             tbRegisterName.Size = new Size(100, 25);
             tbRegisterName.TabIndex = 5;
             // 
             // tbRegisterPassword
             // 
-            tbRegisterPassword.Location = new Point(225, 136);
+            tbRegisterPassword.Location = new Point(206, 117);
             tbRegisterPassword.Name = "tbRegisterPassword";
             tbRegisterPassword.Size = new Size(100, 25);
             tbRegisterPassword.TabIndex = 6;
@@ -105,18 +107,36 @@
             // 
             lblRegisterLogin.AutoSize = true;
             lblRegisterLogin.ForeColor = SystemColors.Highlight;
-            lblRegisterLogin.Location = new Point(363, 256);
+            lblRegisterLogin.Location = new Point(354, 357);
             lblRegisterLogin.Name = "lblRegisterLogin";
             lblRegisterLogin.Size = new Size(33, 18);
             lblRegisterLogin.TabIndex = 7;
             lblRegisterLogin.Text = "Login";
             lblRegisterLogin.Click += lblRegisterLogin_Click;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(206, 173);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 25);
+            textBox1.TabIndex = 8;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(80, 180);
+            label1.Name = "label1";
+            label1.Size = new Size(94, 18);
+            label1.TabIndex = 9;
+            label1.Text = "Confirm Password";
+            // 
             // formRegistration
             // 
             AutoScaleDimensions = new SizeF(6F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(690, 450);
+            Controls.Add(label1);
+            Controls.Add(textBox1);
             Controls.Add(lblRegisterLogin);
             Controls.Add(tbRegisterPassword);
             Controls.Add(tbRegisterName);
@@ -141,5 +161,7 @@
         private TextBox tbRegisterName;
         private TextBox tbRegisterPassword;
         private Label lblRegisterLogin;
+        private TextBox textBox1;
+        private Label label1;
     }
 }
